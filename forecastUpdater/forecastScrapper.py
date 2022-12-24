@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from weather.models import Forecast
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def _parse_data(city: str, day: str):
@@ -24,22 +24,16 @@ def update_forecast(city: str, date: str = None):
         date = datetime.now()
     else:
         date = datetime.strptime(date, '%Y-%m-%d')
-    year = date.year
-    month = date.month
-    day = date.day
 
     for d in range(5):
-        date = f"{year}-{month}-{day + d}"
-        _parse_data(city, date)
+        date_ = date + timedelta(days=d)
+        date_ = date_.strftime('%Y-%m-%d')
 
-        temp, description = _parse_data(city, date)
+        temp, description = _parse_data(city, date_)
 
-        if temp is None:
-            continue
         try:
             new_forecast = Forecast()
-            new_forecast.timestamp = date
-            new_forecast.city = city
+            new_forecast.date = date_
             new_forecast.temperature = temp
             new_forecast.description = description
             new_forecast.save()
