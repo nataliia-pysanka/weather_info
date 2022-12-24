@@ -15,7 +15,7 @@ def _parse_data(city: str):
         return temp, description
 
 
-def update_forecast(city: str):
+def update_forecast(city: str = 'Kyiv'):
     temp, description = _parse_data(city)
     if temp is None:
         return
