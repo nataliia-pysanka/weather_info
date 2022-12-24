@@ -8,10 +8,10 @@ class Forecast(models.Model):
     description = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
 
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.timestamp = datetime.now()
-        return super(Forecast, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.id:
+    #         self.timestamp = datetime.now()
+    #     return super(Forecast, self).save(*args, **kwargs)
 
     def __str__(self):
         return "{t.year}/{t.month:02d}/{t.day:02d} - {t.hour:02d}:{" \
