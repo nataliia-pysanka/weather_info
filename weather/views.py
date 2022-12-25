@@ -1,15 +1,20 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from weather.models import Forecast
 from datetime import datetime, timedelta
 
-from django.shortcuts import render
-from django.views.generic import TemplateView
-from weather.models import Forecast
+from .serializers import ForecastSerializer
 
 
-class MainPage(TemplateView):
-    def get(self, request, **kwargs):
+class ForecastListApiView(APIView):
+    def get(self, request, *args, **kwargs):
+        '''
+        List of forecasts for today and next 5 days
+        '''
         date = datetime.now()
         forecasts = []
-        for d in range(5):
+        for d in range(6):
             date_ = date + timedelta(days=d)
             date_ = date_.strftime('%Y-%m-%d')
             try:
@@ -17,5 +22,7 @@ class MainPage(TemplateView):
                 forecasts.append(forecast)
             except Forecast.DoesNotExist:
                 continue
+        serializer = ForecastSerializer(forecasts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-        return render(request, 'index.html', {'forecasts': forecasts})
+

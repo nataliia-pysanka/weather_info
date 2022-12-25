@@ -1,7 +1,7 @@
 from django.urls import path
-from weather import views
+from .views import ForecastListApiView
 
 
 urlpatterns = [
-    path(r'', views.MainPage.as_view())
+    path('api', ForecastListApiView.as_view()),
 ]
