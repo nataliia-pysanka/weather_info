@@ -30,12 +30,15 @@ def update_forecast(city: str, date: str = None):
         date_ = date_.strftime('%Y-%m-%d')
 
         temp, description = _parse_data(city, date_)
-
+        if not temp:
+            continue
         try:
-            new_forecast = Forecast()
-            new_forecast.date = date_
-            new_forecast.temperature = temp
-            new_forecast.description = description
-            new_forecast.save()
-        except Exception as e:
-            print(e)
+            forecast = Forecast.objects.get(date=date_)
+        except Forecast.DoesNotExist:
+            forecast = Forecast()
+            forecast.date = date_
+        forecast.time = datetime.now().strftime("%H:%M:%S")
+        forecast.temperature = temp
+        forecast.description = description
+        forecast.save()
+

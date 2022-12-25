@@ -1,4 +1,5 @@
-from django.core.exceptions import ObjectDoesNotExist
+from datetime import datetime, timedelta
+
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from weather.models import Forecast
@@ -6,15 +7,15 @@ from weather.models import Forecast
 
 class MainPage(TemplateView):
     def get(self, request, **kwargs):
-        try:
-            latest_forecast = Forecast.objects.latest('date')
-        except ObjectDoesNotExist:
-            return render(request, 'index.html', {})
+        date = datetime.now()
+        forecasts = []
+        for d in range(5):
+            date_ = date + timedelta(days=d)
+            date_ = date_.strftime('%Y-%m-%d')
+            try:
+                forecast = Forecast.objects.get(date=date_)
+                forecasts.append(forecast)
+            except Forecast.DoesNotExist:
+                continue
 
-        temp = latest_forecast.temperature
-        description = latest_forecast.description
-        date = "{t.year}/{t.month:02d}/{t.day:02d}".format(t=latest_forecast.date)
-        data = {'temp': temp,
-                'desctiprion': description,
-                'date': date}
-        return render(request, 'index.html', data)
+        return render(request, 'index.html', {'forecasts': forecasts})
