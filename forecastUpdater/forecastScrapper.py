@@ -25,7 +25,7 @@ def update_forecast(city: str, date: str = None):
     else:
         date = datetime.strptime(date, '%Y-%m-%d')
 
-    for d in range(5):
+    for d in range(6):
         date_ = date + timedelta(days=d)
         date_ = date_.strftime('%Y-%m-%d')
 
