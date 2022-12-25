@@ -1,7 +1,9 @@
 <div style="text-align: center">
-    <h5>Currently in</h5>
-    <h3>{{city}}</h3>
-    <h4>{{temp}}</h4>
-    <h4>{{desctiprion}}</h4>
-    <p><em>Last updated {{update_time}}</em></p>
+    <h1>Weather in Kyiv</h1>
+    {%  for forecast in forecasts %}
+        <h2>{{ forecast.date }}</h2>  <p>{{ forecast.temperature }}</p>
+        <h3>{{ forecast.description }}</h3>
+        <p><em>Last updated {{ forecast.date }} {{ forecast.time }}</em></p>
+    {% endfor %}
+
 </div>

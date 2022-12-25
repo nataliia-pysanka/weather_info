@@ -3,14 +3,17 @@ from datetime import datetime
 
 
 class Forecast(models.Model):
-    date = models.DateField(default=datetime.now())
+    date = models.CharField(max_length=10)
+    time = models.CharField(max_length=8)
     temperature = models.CharField(max_length=15)
     description = models.CharField(max_length=150)
 
-    # def save(self, *args, **kwargs):
-    #     if not self.id:
-    #         self.timestamp = datetime.now()
-    #     return super(Forecast, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.time = datetime.now().strftime("%H:%M:%S")
+        return super(Forecast, self).save(*args, **kwargs)
 
     def __str__(self):
-        return "{t.year}/{t.month:02d}/{t.day:02d}".format(t=self.date)
+        return f"{self.date} {self.time}"
+        # return "{d.year}/{d.month:02d}/{d.day:02d} {t.hour:02d}:{" \
+        #        "t.minute:02d}:{t.second:02d}".format(d=self.date, t=self.time)
