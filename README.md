@@ -1,6 +1,6 @@
 ## Weather parser API
 
-:exclamation: Service was developed and tested in Linux system. It could be troubles with work on Windows
+:exclamation: The service has been developed and tested on a Linux system. There may be problems with working in Windows
 
 Web service receives information about the weather in Kyiv for today and 5 days ahead every day at 09:00.
 The hour of schedule could be changed.
