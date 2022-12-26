@@ -28,17 +28,25 @@ Docker-compose (https://docs.docker.com/compose/)
 
 ### Deploy
 
+Clone this repository using git
 ```bash
-# Clone this repository using git
 git clone git@github.com:nataliia-pysanka/weather_info.git
 ```
+Change directory
 ```bash
-# Change directory
 sudo cd weather_info
 ```
+Build the container
 ```bash
-# Build the container
 make up
+```
+Make migrations 
+```bash
+make migrate
+```
+Create superuser
+```bash
+make user
 ```
 ```bash
 # Navigate to http://localhost/api

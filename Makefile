@@ -1,8 +1,10 @@
-#cnf ?= .env
-#include $(cnf)
-#export $(shell sed 's/=.*//' $(cnf))
+
 up:
 	sudo docker-compose up --build
+migrate:
+	python3 manage.py migrate
+user:
+	python3 manage.py createsuperuser
 config:
 	sudo docker-compose config
 ps:
