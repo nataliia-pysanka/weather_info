@@ -1,10 +1,6 @@
 
 up:
 	sudo docker-compose up --build
-migrate:
-	python3 manage.py migrate
-user:
-	python3 manage.py createsuperuser
 config:
 	sudo docker-compose config
 ps:

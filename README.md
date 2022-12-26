@@ -40,18 +40,8 @@ Build the container
 ```bash
 make up
 ```
-Make migrations 
-```bash
-make migrate
-```
-Create superuser
-```bash
-make user
-```
-```bash
-# Navigate to http://localhost/api
-# Use POST.json for filling database
-```
+Navigate to http://localhost/api
+Use POST.json for filling database
 
 ### Destroy
 
