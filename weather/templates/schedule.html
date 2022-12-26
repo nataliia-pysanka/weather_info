@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<form class="form" method="post">
+    {% csrf_token %}
+    <textarea class="text">{{ data }}</textarea>
+    <input class="btn" type="submit" value="Reschedule">
+</form>
+</div>
+{% endblock %}
