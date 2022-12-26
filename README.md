@@ -34,7 +34,7 @@ git clone git@github.com:nataliia-pysanka/weather_info.git
 ```
 Change directory
 ```bash
-sudo cd weather_info
+cd weather_info
 ```
 Build the container
 ```bash
