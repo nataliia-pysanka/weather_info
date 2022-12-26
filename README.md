@@ -41,7 +41,10 @@ Build the container
 make up
 ```
 Navigate to http://localhost/api
+
 Use POST.json for filling database
+
+To open admin panel use username and password: admin / admin
 
 ### Destroy
 
