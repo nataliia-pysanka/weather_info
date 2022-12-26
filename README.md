@@ -1,6 +1,6 @@
 ## Weather parser API
 
-Web service receives information about the weather in Kyiv for today and 5 days ahead.every day at 09:00.
+Web service receives information about the weather in Kyiv for today and 5 days ahead every day at 09:00.
 The hour of schedule could be changed.
 
 #### The following requirements are being developed:
@@ -30,11 +30,17 @@ Docker-compose (https://docs.docker.com/compose/)
 
 ```bash
 # Clone this repository using git
-git@github.com:nataliia-pysanka/weather_info.git
+git clone git@github.com:nataliia-pysanka/weather_info.git
+```
+```bash
 # Change directory
 sudo cd weather_info
+```
+```bash
 # Build the container
 make up
+```
+```bash
 # Navigate to http://localhost/api
 # Use POST.json for filling database
 ```
