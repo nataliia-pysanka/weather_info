@@ -9,7 +9,8 @@ services:
     ports:
       - "8000:8000"
     command: >
-      /bin/sh -c "python3 manage.py makemigrations  --noinput
-      && python3 manage.py migrate  --noinput
-      && python3 manage.py shell < createsuperuser.py
-      && python3 manage.py runserver 0.0.0.0:8000"
+      $SHELL -c "python manage.py makemigrations  --noinput
+      && python manage.py migrate  --noinput
+      && python manage.py shell < createsuperuser.py
+      && python manage.py collectstatic  --noinput
+      && gunicorn pos.wsgi:application --bind 0.0.0.0:8000"
