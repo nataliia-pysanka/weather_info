@@ -6,6 +6,9 @@ from datetime import datetime, timedelta
 
 
 def _parse_data(city: str, day: str):
+    """
+        Parsing forecast from meteosite
+    """
     url = f'https://pogoda.meta.ua/ua/{city}/{day}/ajax/'
     html_doc = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
 
@@ -20,6 +23,9 @@ def _parse_data(city: str, day: str):
 
 
 def update_forecast(city: str, date: str = None):
+    """
+        Update or create Forecast record
+    """
     if not date:
         date = datetime.now()
     else:
@@ -41,4 +47,3 @@ def update_forecast(city: str, date: str = None):
         forecast.temperature = temp
         forecast.description = description
         forecast.save()
-

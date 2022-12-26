@@ -1,9 +1,15 @@
-<div style="text-align: center">
-    <h1>Weather in Kyiv</h1>
-    {%  for forecast in forecasts %}
-        <h2>{{ forecast.date }}</h2>  <p>{{ forecast.temperature }}</p>
-        <h3>{{ forecast.description }}</h3>
-        <p><em>Last updated {{ forecast.date }} {{ forecast.time }}</em></p>
-    {% endfor %}
+{% extends "base.html" %}
 
-</div>
+{% block content %}
+    <div class="container">
+    {%  for forecast in forecasts %}
+        <div class="item">
+            <h2>{{ forecast.date }}: {{ forecast.temperature }}</h2>
+            <p>{{ forecast.description }}</p>
+            <p><em>Last updated {{ forecast.date }} {{ forecast.time }}</em></p>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+
+

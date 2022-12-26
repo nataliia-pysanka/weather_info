@@ -14,3 +14,10 @@ class ForecastSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forecast
         fields = ('date', 'time', 'temperature', 'description')
+
+
+class ScheduleSerializer(serializers.Serializer):
+    """
+        Serializer for scedule
+    """
+    hour = serializers.IntegerField(default=10, min_value=0, max_value=23)
