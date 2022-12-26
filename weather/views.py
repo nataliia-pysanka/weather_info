@@ -11,24 +11,6 @@ from .serializers import ForecastSerializer, ScheduleSerializer
 from forecastUpdater.updater import reschedule
 
 
-class MainPage(TemplateView):
-    def get(self, request, **kwargs):
-        date = datetime.now()
-        forecasts = []
-
-        for d in range(6):
-            date_ = date + timedelta(days=d)
-            date_ = date_.strftime('%Y-%m-%d')
-
-            try:
-                forecast = Forecast.objects.get(date=date_)
-            except Forecast.DoesNotExist:
-                continue
-            forecasts.append(forecast)
-
-        return render(request, 'index.html', {'forecasts': forecasts})
-
-
 class ForecastListApiView(APIView):
     def get(self, request, *args, **kwargs):
         """
